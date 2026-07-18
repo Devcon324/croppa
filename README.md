@@ -19,6 +19,7 @@ Ideal for scanned books, magazine scans, and print-on-demand layouts that ship a
 - Interleaves halves into a single `out.pdf`
 - Works from the command line or via an interactive prompt
 - Prebuilt Windows and Linux binaries on [Releases](https://github.com/Devcon324/croppa/releases)
+- Managed with [uv](https://docs.astral.sh/uv/)
 
 ## Quick start (binaries)
 
@@ -40,26 +41,32 @@ chmod +x croppa-linux-amd64
 
 ## Install from source
 
-Requires Python 3.8+ and [PyPDF2](https://pypdf2.readthedocs.io/).
+Requires [uv](https://docs.astral.sh/uv/) (Python 3.8+ is pulled in automatically if needed).
 
 ```bash
 git clone https://github.com/Devcon324/croppa.git
 cd croppa
-pip install -r requirements.txt
+uv sync
 ```
 
 ## Usage
 
-**Pass a file as an argument:**
+**With uv (recommended):**
 
 ```bash
-python croppa.py my-spread.pdf
+uv run croppa my-spread.pdf
 ```
 
-**Or run interactively** (you’ll be prompted for the filename):
+**Or run the script directly after syncing:**
 
 ```bash
-python croppa.py
+uv run python croppa.py my-spread.pdf
+```
+
+**Interactive mode** (prompted for the filename):
+
+```bash
+uv run croppa
 ```
 
 ### Output
@@ -72,31 +79,37 @@ python croppa.py
 
 Files are written to the **current working directory**.
 
-## Build a Windows executable
+## Build native binaries
 
-With [PyInstaller](https://pyinstaller.org/) installed:
+Install the build dependency group, then use PyInstaller:
 
 ```bash
-pip install pyinstaller
-python -m PyInstaller --onefile --icon=croppa_icon.ico croppa.py
+uv sync --group build
+
+# Windows
+uv run pyinstaller --onefile --name croppa-windows-amd64 --icon=croppa_icon.ico croppa.py
+
+# Linux
+uv run pyinstaller --onefile --name croppa-linux-amd64 croppa.py
 ```
 
 Or use the included spec file:
 
 ```bash
-pyinstaller croppa.spec
+uv run pyinstaller croppa.spec
 ```
 
-The binary will appear under `dist/croppa.exe`.
+Binaries land in `dist/`.
 
 ## Project layout
 
 ```
 croppa.py          # main script
+pyproject.toml     # project metadata + deps (uv)
+uv.lock            # locked dependency versions
 croppa.spec        # PyInstaller config
 croppa_icon.ico    # app icon
 croppa_icon.jpg    # icon source
-requirements.txt
 README.md
 ```
 
