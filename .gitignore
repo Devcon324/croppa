@@ -10,7 +10,10 @@ env/
 # PyInstaller
 build/
 dist/
+release/
 *.manifest
+croppa-windows-amd64.spec
+croppa-linux-amd64.spec
 
 # Croppa outputs / local PDFs
 *.pdf

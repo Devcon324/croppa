@@ -9,6 +9,14 @@ import sys
 
 import PyPDF2
 
+# Windows consoles often default to cp1252; keep banner/output printable.
+if hasattr(sys.stdout, "reconfigure"):
+    try:
+        sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+        sys.stderr.reconfigure(encoding="utf-8", errors="replace")
+    except Exception:
+        pass
+
 
 def crop_left(input_path: str, output_path: str = "left.pdf") -> None:
     with open(input_path, "rb") as file:

@@ -18,14 +18,29 @@ Ideal for scanned books, magazine scans, and print-on-demand layouts that ship a
 - Crops every page into left and right halves
 - Interleaves halves into a single `out.pdf`
 - Works from the command line or via an interactive prompt
-- Optional Windows `.exe` build with PyInstaller
+- Prebuilt Windows and Linux binaries on [Releases](https://github.com/Devcon324/croppa/releases)
 
-## Requirements
+## Quick start (binaries)
 
-- Python 3.8+
-- [PyPDF2](https://pypdf2.readthedocs.io/)
+Download the latest release from [Releases](https://github.com/Devcon324/croppa/releases):
 
-## Install
+| Platform | Asset |
+|----------|--------|
+| Windows (x64) | `croppa-windows-amd64.exe` |
+| Linux (x64) | `croppa-linux-amd64` |
+
+```bash
+# Windows
+croppa-windows-amd64.exe my-spread.pdf
+
+# Linux
+chmod +x croppa-linux-amd64
+./croppa-linux-amd64 my-spread.pdf
+```
+
+## Install from source
+
+Requires Python 3.8+ and [PyPDF2](https://pypdf2.readthedocs.io/).
 
 ```bash
 git clone https://github.com/Devcon324/croppa.git
