@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.venv/
+venv/
+env/
+
+# PyInstaller
+build/
+dist/
+*.manifest
+
+# Croppa outputs / local PDFs
+*.pdf
+left.pdf
+right.pdf
+out.pdf
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
